@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Una Sorpresa Para Ti! ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>¡Una Sorpresa Para Ti, Mi Amor!</h1>
+            <p id="romantic-message">Cada día a tu lado es un regalo. ¡Espero que disfrutes esto!</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="secretCode">Introduce el código secreto:</label>
+                <input type="text" id="secretCode" placeholder="Tu código aquí..." autocomplete="off">
+                <button id="unlockButton">Desbloquear Sorpresa</button>
+                <p id="message" class="message"></p>
+                <div id="confirmation" class="confirmation-message">
+                    <span class="checkmark">✔</span> ¡Sorpresa desbloqueada! Descargando...
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2>Sorpresas Desbloqueadas:</h2>
+                <ul id="unlockedSurprises">
+                    </ul>
+            </div>
+        </main>
+
+        <footer>
+            <div class="theme-switcher">
+                <span>Cambiar Tema:</span>
+                <div class="theme-options">
+                    <button class="theme-btn" data-theme="default" style="background-color: #ffcccc;"></button>
+                    <button class="theme-btn" data-theme="lavender" style="background-color: #e6e6fa;"></button>
+                    <button class="theme-btn" data-theme="peach" style="background-color: #ffe5b4;"></button>
+                    <button class="theme-btn" data-theme="mint" style="background-color: #d1ffd1;"></button>
+                    <button class="theme-btn" data-theme="sky" style="background-color: #add8e6;"></button>
+                    <button class="theme-btn" data-theme="rose" style="background-color: #ffe4e1;"></button>
+                </div>
+            </div>
+            <p>&copy; 2025 Hecho con ❤️ para ti.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
