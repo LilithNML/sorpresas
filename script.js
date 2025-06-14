@@ -8,43 +8,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeButtons = document.querySelectorAll('.theme-btn');
     const body = document.body;
 
-    // --- Configuración de Códigos Secretos y Archivos ---
+    // --- Configuración de Códigos Secretos y Archivos
     // NOTA: Para añadir o modificar códigos, simplemente edita este objeto.
-    // La clave es el código secreto, el valor es un objeto con el nombre de la sorpresa y el enlace.
     const secretCodes = {
         'amorinfinito': {
             name: 'Nuestra primera playlist',
-            file: 'aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0d0c5d1hjUVU=' // Ejemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ (Rick Astley)
+            file: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Ejemplo: Rick Astley - Never Gonna Give You Up
         },
         'mividaentera': {
             name: 'Carta de amor especial',
-            file: 'ZGF0YSB1cmwvcGxhaW4vdGV4dCxsYSBjYXJ0YSBkZSBhbW9yIGRlIG1pIHZpZGEgZW50ZXJh' // Ejemplo: Contenido de texto en un data URL
+            file: 'data:text/plain,la carta de amor de mi vida entera' // Ejemplo: Contenido de texto en un data URL
         },
         'siemprejuntos': {
             name: 'Recuerdo de nuestro primer viaje',
-            file: 'aHR0cHM6Ly9leGFtcGxlLmNvbS9pbWFnZXMvcmVjdWVyZG8tcHJpbWVyLXZpYWplLnBuZw==' // Ejemplo: https://example.com/images/recuerdo-primer-viaje.png
+            file: 'https://picsum.photos/id/237/200/300' // Ejemplo: Una imagen de un perrito aleatorio de Lorem Picsum
         },
         'miprincipe': {
             name: 'Una lista de cosas que amo de ti',
-            file: 'ZGF0YSB1cmwvcGxhaW4vdGV4dCxFc3RhIGVzIGxhIGxpc3RhIGRlIGNvc2FzIHF1ZSBhbW8gZGUgdGk6IDEuIFR1IHNvbnJpc2EuIDIuIFR1IGFib2ZlZGEuIDMuIFR1IGluZmllcm5vIGh1bW9yLg=='
+            file: 'data:text/plain,Esta es la lista de cosas que amo de ti: 1. Tu sonrisa. 2. Tu abofeda. 3. Tu infierno humor.'
         }
-        // Agrega más códigos aquí: 'nuevo_codigo': { name: 'Nueva Sorpresa', file: 'enlace' }
+        // Agrega más códigos aquí: 'nuevo_codigo': { name: 'Nueva Sorpresa', file: 'https://tu-dominio.com/tu-archivo.pdf' }
     };
-
-    // Función para codificar un string (simple Base64)
-    function encodeLink(str) {
-        return btoa(str);
-    }
-
-    // Función para decodificar un string (simple Base64)
-    function decodeLink(encodedStr) {
-        try {
-            return atob(encodedStr);
-        } catch (e) {
-            console.error("Error al decodificar el enlace:", e);
-            return null;
-        }
-    }
 
     // --- Funcionalidad de Historial Local ---
     const LOCAL_STORAGE_KEY = 'unlockedSurprises';
@@ -96,12 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (secretCodes[code]) {
             const surprise = secretCodes[code];
-            const decodedFileLink = decodeLink(surprise.file);
+            // Ya no es necesario decodificar, el enlace está directamente en surprise.file
+            const fileLink = surprise.file; 
 
-            if (decodedFileLink) {
+            if (fileLink) {
                 // Iniciar descarga
                 const link = document.createElement('a');
-                link.href = decodedFileLink;
+                link.href = fileLink;
+                // Si es un data URL, el navegador puede sugerir el nombre 'download'.
+                // Si es un enlace a un archivo externo, el 'download' atributo sugerirá un nombre,
+                // pero la descarga real dependerá del tipo de contenido y la configuración del servidor.
                 link.download = surprise.name.replace(/\s/g, '_') + '.txt'; // Nombre de archivo sugerido
                 document.body.appendChild(link);
                 link.click();
@@ -159,3 +147,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializar la visualización del historial al cargar la página
     displayUnlockedSurprises();
+});
