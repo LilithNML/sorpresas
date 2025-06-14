@@ -12,19 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // NOTA: Para añadir o modificar códigos, simplemente edita este objeto.
     const secretCodes = {
         'amorinfinito': {
-            name: 'Nuestra primera playlist',
+            name: 'amorinfinito,
             file: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Ejemplo: Rick Astley - Never Gonna Give You Up
         },
         'mividaentera': {
-            name: 'Carta de amor especial',
+            name: 'mividaentera,
             file: 'data:text/plain,la carta de amor de mi vida entera' // Ejemplo: Contenido de texto en un data URL
         },
         'siemprejuntos': {
-            name: 'Recuerdo de nuestro primer viaje',
+            name: 'siemprejuntos,
             file: 'https://picsum.photos/id/237/200/300' // Ejemplo: Una imagen de un perrito aleatorio de Lorem Picsum
         },
         'miprincipe': {
-            name: 'Una lista de cosas que amo de ti',
+            name: 'miprincipe,
             file: 'data:text/plain,Esta es la lista de cosas que amo de ti: 1. Tu sonrisa. 2. Tu abofeda. 3. Tu infierno humor.'
         }
         // Agrega más códigos aquí: 'nuevo_codigo': { name: 'Nueva Sorpresa', file: 'https://tu-dominio.com/tu-archivo.pdf' }
