@@ -3,50 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Una Sorpresa Para Ti! ❤️</title>
+    <title>Acceso</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285F4' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E" type="image/svg+xml">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>¡Una Sorpresa Para Ti, Mi Amor!</h1>
-            <p id="romantic-message">Cada día a tu lado es un regalo. ¡Espero que disfrutes esto!</p>
+            <h1>Código Secreto</h1>
+            <p>Introduce tu código para desbloquear el contenido.</p>
         </header>
 
         <main>
-            <div class="input-section">
-                <label for="secretCode">Introduce el código secreto:</label>
-                <input type="text" id="secretCode" placeholder="Tu código aquí..." autocomplete="off">
-                <button id="unlockButton">Desbloquear Sorpresa</button>
-                <p id="message" class="message"></p>
-                <div id="confirmation" class="confirmation-message">
-                    <span class="checkmark">✔</span> ¡Sorpresa desbloqueada! Descargando...
-                </div>
+            <div class="input-group">
+                <input type="password" id="secretCode" placeholder="Ingresa tu código aquí..." autocomplete="off">
+                <button id="submitCode">
+                    <svg class="icon-arrow-right" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                    </svg>
+                </button>
             </div>
+            <div id="message" class="message"></div>
 
-            <div class="history-section">
-                <h2>Sorpresas Desbloqueadas:</h2>
-                <ul id="unlockedSurprises">
-                    </ul>
+            <div id="downloadArea" class="download-area">
+                <p>¡Código correcto! Haz clic para descargar tu archivo:</p>
+                <button id="downloadButton" class="download-button">
+                    <svg class="icon-download" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Descargar Archivo
+                </button>
             </div>
         </main>
 
         <footer>
-            <div class="theme-switcher">
-                <span>Cambiar Tema:</span>
-                <div class="theme-options">
-                    <button class="theme-btn" data-theme="default" style="background-color: #ffcccc;"></button>
-                    <button class="theme-btn" data-theme="lavender" style="background-color: #e6e6fa;"></button>
-                    <button class="theme-btn" data-theme="peach" style="background-color: #ffe5b4;"></button>
-                    <button class="theme-btn" data-theme="mint" style="background-color: #d1ffd1;"></button>
-                    <button class="theme-btn" data-theme="sky" style="background-color: #add8e6;"></button>
-                    <button class="theme-btn" data-theme="rose" style="background-color: #ffe4e1;"></button>
-                </div>
-            </div>
-            <p>&copy; 2025 Hecho con ❤️ para ti.</p>
+            <p>&copy; 2025 Para mi novio.</p>
         </footer>
     </div>
 
