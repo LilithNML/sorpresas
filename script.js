@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // o URLs de GitHub Pages como en tu ejemplo.
     const validCodes = {
         "VUQGSRNBBKUWSWTRWHJCQDNWDVYYPA": "assets/contrasenas.PDF",
-        "regalo123": "../assets/diario/regalo.zip",
+        "MWKBAEFZZSTLCDFHQSVCSNDUFPEMYV": "assets/contrasenas_img.PDF",
         "foto2024": "../assets/diario/vacaciones.jpg",
         "documentoXYZ": "https://github.com/usuario/repositorio/raw/main/documentos/informe.docx"
     };
