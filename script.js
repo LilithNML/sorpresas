@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const secretCodes = {
         'VUQGSRNBBKUWSWTRWHJCQDNWDVYYPA': {
             name: 'contraseñas',
-            file: 'malcom.jpg'
+            file: 'contrasenas.PDF'
         },
         'mividaentera': {
             name: 'Carta de amor especial',
