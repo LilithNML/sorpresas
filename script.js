@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const secretCodes = {
         'vuqgsrnbbkuwswtrwhjcqdnwdvyypa': {
             name: 'contraseñas',
-            file: 'contrasenas.PDF'
+            file: 'https://lilithnml.github.io/sorpresas/contrasenas.PDF'
         },
         'mividaentera': {
             name: 'Carta de amor especial',
