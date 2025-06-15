@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuración de Códigos Secretos y Archivos ---
     const secretCodes = {
-        'VUQGSRNBBKUWSWTRWHJCQDNWDVYYPA': {
+        'vuqgsrnbbkuwswtrwhjcqdnwdvyypa': {
             name: 'contraseñas',
             file: 'contrasenas.PDF'
         },
