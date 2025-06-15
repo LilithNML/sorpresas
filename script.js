@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuración de Códigos Secretos y Archivos ---
     const secretCodes = {
         'vuqgsrnbbkuwswtrwhjcqdnwdvyypa': {
-            name: 'contraseñas',
+            name: 'contraseñas.pdf',
             file: 'https://lilithnml.github.io/sorpresas/contrasenas.PDF'
         },
         'mividaentera': {
