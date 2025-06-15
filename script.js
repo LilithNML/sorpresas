@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reemplaza estas URLs con las rutas reales de tus archivos en '../assets/diario'
     // o URLs de GitHub Pages como en tu ejemplo.
     const validCodes = {
-        "amor2025": "assets/contrasenas.PDF",
+        "VUQGSRNBBKUWSWTRWHJCQDNWDVYYPA": "assets/contrasenas.PDF",
         "regalo123": "../assets/diario/regalo.zip",
         "foto2024": "../assets/diario/vacaciones.jpg",
         "documentoXYZ": "https://github.com/usuario/repositorio/raw/main/documentos/informe.docx"
