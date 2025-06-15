@@ -11,8 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const validCodes = {
         "VUQGSRNBBKUWSWTRWHJCQDNWDVYYPA": "assets/contrasenas.PDF",
         "MWKBAEFZZSTLCDFHQSVCSNDUFPEMYV": "assets/contrasenas_img.PDF",
-        "foto2024": "../assets/diario/vacaciones.jpg",
-        "documentoXYZ": "https://github.com/usuario/repositorio/raw/main/documentos/informe.docx"
+        "FJLPCXLHEUXGSUV": "assets/img_01.jpg.enc",
+        "LDURAZNLSXFBWBP": "assets/img_02.jpg.enc",
+        "PKSHUEBQPMMHPMD": "assets/img_03.jpg.enc",
+        "JCNHYTZTDGTLFJD": "assets/img_04.jpg.enc",
+        "VRSVSBZNZXEFLTW": "assets/img_05.jpg.enc",
+        "NZECHLNSQELSPAE": "assets/img_06.jpg.enc",
+        "FBHAXUHCDVSGJCQ": "assets/img_07.jpg.enc",
     };
 
     let currentFileUrl = ''; // Almacena la URL del archivo para la descarga
