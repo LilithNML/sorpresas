@@ -10,17 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuración de Códigos Secretos y Archivos ---
     const secretCodes = {
-        'amorinfinito': {
-            name: 'Nuestra primera playlist',
-            file: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' // Ejemplo: Rick Astley - Never Gonna Give You Up
+        'VUQGSRNBBKUWSWTRWHJCQDNWDVYYPA': {
+            name: 'contraseñas',
+            file: 'malcom.jpg'
         },
         'mividaentera': {
             name: 'Carta de amor especial',
-            file: 'data:text/plain,la carta de amor de mi vida entera' // Ejemplo: Contenido de texto en un data URL
+            file: 'data:text/plain,la carta de amor de mi vida entera' //
         },
         'siemprejuntos': {
             name: 'Recuerdo de nuestro primer viaje',
-            file: 'https://picsum.photos/id/237/200/300' // Ejemplo: Una imagen de un perrito aleatorio de Lorem Picsum
+            file: 'https://picsum.photos/id/237/200/300' //
         },
         'miprincipe': {
             name: 'Una lista de cosas que amo de ti',
