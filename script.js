@@ -1,146 +1,116 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Referencias a elementos del DOM
     const secretCodeInput = document.getElementById('secretCode');
-    const unlockButton = document.getElementById('unlockButton');
+    const submitCodeButton = document.getElementById('submitCode');
     const messageDisplay = document.getElementById('message');
-    const unlockedSurprisesList = document.getElementById('unlockedSurprises');
-    const confirmationMessage = document.getElementById('confirmation');
-    const themeButtons = document.querySelectorAll('.theme-btn');
-    const body = document.body;
+    const downloadArea = document.getElementById('downloadArea');
+    const downloadButton = document.getElementById('downloadButton');
 
-    // --- Configuración de Códigos Secretos y Archivos ---
-    const secretCodes = {
-        'vuqgsrnbbkuwswtrwhjcqdnwdvyypa': {
-            name: 'contraseñas.pdf',
-            file: 'https://lilithnml.github.io/sorpresas/contrasenas.PDF'
-        },
-        'mividaentera': {
-            name: 'Carta de amor especial',
-            file: 'data:text/plain,la carta de amor de mi vida entera' //
-        },
-        'siemprejuntos': {
-            name: 'Recuerdo de nuestro primer viaje',
-            file: 'https://picsum.photos/id/237/200/300' //
-        },
-        'miprincipe': {
-            name: 'Una lista de cosas que amo de ti',
-            file: 'data:text/plain,Esta es la lista de cosas que amo de ti: 1. Tu sonrisa. 2. Tu abofeda. 3. Tu infierno humor.'
-        }
-        // Agrega más códigos aquí
+    // **IMPORTANTE: Define tus códigos válidos y sus URLs aquí**
+    // Reemplaza estas URLs con las rutas reales de tus archivos en '../assets/diario'
+    // o URLs de GitHub Pages como en tu ejemplo.
+    const validCodes = {
+        "amor2025": "assets/contrasenas.PDF",
+        "regalo123": "../assets/diario/regalo.zip",
+        "foto2024": "../assets/diario/vacaciones.jpg",
+        "documentoXYZ": "https://github.com/usuario/repositorio/raw/main/documentos/informe.docx"
     };
 
-    // --- Funcionalidad de Historial Local ---
-    const LOCAL_STORAGE_KEY = 'unlockedCodes'; // Cambiamos la clave para mayor claridad
+    let currentFileUrl = ''; // Almacena la URL del archivo para la descarga
 
-    // Carga el historial desde localStorage al iniciar
-    let unlockedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
-
-    // Muestra el historial en la página
-    function displayUnlockedSurprises() {
-        unlockedSurprisesList.innerHTML = ''; // Limpiar la lista actual
-        if (unlockedItems.length === 0) {
-            unlockedSurprisesList.innerHTML = '<li>Aún no has desbloqueado ninguna sorpresa.</li>';
-            return;
-        }
-        unlockedItems.forEach(item => {
-            const listItem = document.createElement('li');
-            // Ahora mostramos el código, y opcionalmente su nombre de sorpresa si quieres verlo también.
-            // Por ejemplo: `listItem.textContent = `${item} (Desbloqueado: ${secretCodes[item] ? secretCodes[item].name : 'Desconocido'})`;`
-            // Pero como pediste solo el código, lo dejamos simple:
-            listItem.textContent = item; 
-            unlockedSurprisesList.appendChild(listItem);
-        });
+    // Función para mostrar mensajes
+    function showMessage(msg, type) {
+        messageDisplay.textContent = msg;
+        messageDisplay.className = `message show ${type}`;
     }
 
-    // Añade el código al historial y lo guarda
-    function addCodeToHistory(codeUsed) { // Cambiamos el nombre de la función y el parámetro
-        if (!unlockedItems.includes(codeUsed)) {
-            unlockedItems.push(codeUsed);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(unlockedItems));
-            displayUnlockedSurprises();
+    // Función para ocultar mensajes
+    function hideMessage() {
+        messageDisplay.classList.remove('show', 'error', 'success');
+        messageDisplay.textContent = '';
+    }
+
+    // Función para validar el código y manejar la UI
+    function validateCode() {
+        const enteredCode = secretCodeInput.value.trim();
+        hideMessage(); // Ocultar cualquier mensaje anterior
+        downloadArea.classList.remove('show'); // Ocultar área de descarga
+
+        if (validCodes.hasOwnProperty(enteredCode)) {
+            currentFileUrl = validCodes[enteredCode];
+            showMessage('¡Código correcto!', 'success');
+            // Pequeña animación de éxito en el input o botón
+            submitCodeButton.style.backgroundColor = 'var(--secondary-color)';
+            setTimeout(() => {
+                submitCodeButton.style.backgroundColor = 'var(--primary-color)';
+                downloadArea.classList.add('show'); // Mostrar área de descarga
+                downloadButton.textContent = 'Descargar Archivo'; // Resetear texto por si se intentó varias veces
+                downloadButton.classList.remove('downloading');
+            }, 500); // Pequeño retraso para la animación
+        } else {
+            showMessage('Código incorrecto. Intenta de nuevo.', 'error');
+            secretCodeInput.classList.add('error-shake'); // Animación de error
+            setTimeout(() => {
+                secretCodeInput.classList.remove('error-shake');
+            }, 500);
+            secretCodeInput.value = ''; // Limpiar el campo
         }
     }
 
-    // --- Funcionalidad de Validación y Descarga ---
-    unlockButton.addEventListener('click', handleUnlock);
-    secretCodeInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            handleUnlock();
+    // Event Listeners
+    submitCodeButton.addEventListener('click', validateCode);
+
+    secretCodeInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            validateCode();
         }
     });
 
-    function handleUnlock() {
-        const code = secretCodeInput.value.trim().toLowerCase(); // Limpiar espacios y convertir a minúsculas
-        messageDisplay.classList.remove('show', 'error'); // Resetear mensajes
-        confirmationMessage.classList.remove('show'); // Resetear confirmación
-        messageDisplay.textContent = ''; // Limpiar texto de mensaje
-
-        if (!code) {
-            showMessage('Por favor, introduce un código.', 'error');
-            return;
-        }
-
-        if (secretCodes[code]) {
-            const surprise = secretCodes[code];
-            const fileLink = surprise.file; 
-
-            if (fileLink) {
-                // Iniciar descarga
+    downloadButton.addEventListener('click', () => {
+        if (currentFileUrl) {
+            downloadButton.textContent = 'Preparando descarga...';
+            downloadButton.classList.add('downloading');
+            // Simular una pequeña espera antes de la descarga real
+            setTimeout(() => {
                 const link = document.createElement('a');
-                link.href = fileLink;
-                link.download = surprise.name.replace(/\s/g, '_') + '.txt'; 
+                link.href = currentFileUrl;
+                // Intentar inferir el nombre del archivo de la URL para el atributo download
+                const fileNameMatch = currentFileUrl.match(/\/([^\/?#]+)[\/?#]?.*$/);
+                if (fileNameMatch && fileNameMatch[1]) {
+                    link.download = fileNameMatch[1];
+                } else {
+                    link.download = 'archivo_secreto'; // Nombre por defecto si no se puede inferir
+                }
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
 
-                // Mostrar confirmación visual
-                confirmationMessage.classList.add('show');
+                downloadButton.textContent = '¡Descarga iniciada!';
                 setTimeout(() => {
-                    confirmationMessage.classList.remove('show');
-                }, 3000); 
-
-                showMessage(`¡Felicidades! Has desbloqueado: "${surprise.name}"`, 'success');
-                // AQUÍ ES DONDE CAMBIA: ahora pasamos el código exacto
-                addCodeToHistory(code); 
-                secretCodeInput.value = ''; 
-            } else {
-                showMessage('Error al procesar el archivo. Intenta con otro código.', 'error');
-            }
-        } else {
-            showMessage('Código incorrecto o inválido. ¡Sigue intentándolo!', 'error');
+                    downloadButton.classList.remove('downloading');
+                    downloadButton.textContent = 'Descargar Archivo'; // Resetear para futuros usos
+                    downloadArea.classList.remove('show'); // Ocultar área de descarga después de descargar
+                    secretCodeInput.value = ''; // Limpiar el campo de entrada
+                    secretCodeInput.focus(); // Poner el foco de nuevo en el input
+                }, 1500); // Dar tiempo para ver el mensaje de descarga iniciada
+            }, 700);
         }
-    }
-
-    // Función para mostrar mensajes al usuario
-    function showMessage(msg, type) {
-        messageDisplay.textContent = msg;
-        messageDisplay.classList.add('show');
-        if (type === 'error') {
-            messageDisplay.classList.add('error');
-        } else {
-            messageDisplay.classList.remove('error');
-        }
-        setTimeout(() => {
-            messageDisplay.classList.remove('show');
-        }, 3000);
-    }
-
-    // --- Funcionalidad de Temas de Colores ---
-    const savedTheme = localStorage.getItem('selectedTheme');
-    if (savedTheme) {
-        body.setAttribute('data-theme', savedTheme);
-    } else {
-        body.setAttribute('data-theme', 'default'); 
-    }
-
-    themeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const theme = button.dataset.theme;
-            body.setAttribute('data-theme', theme);
-            localStorage.setItem('selectedTheme', theme); 
-        });
     });
 
-    // Inicializar la visualización del historial al cargar la página
-    displayUnlockedSurprises();
+    // Añadir clase para la animación de "shake" en el input de código incorrecto
+    const styleSheet = document.styleSheets[0];
+    const keyframes = `@keyframes errorShake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }`;
+    styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+    styleSheet.insertRule(`
+        #secretCode.error-shake {
+            animation: errorShake 0.3s ease-in-out;
+            border-color: var(--error-color) !important;
+        }
+    `, styleSheet.cssRules.length);
 });
