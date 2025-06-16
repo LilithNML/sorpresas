@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "VRSVSBZNZXEFLTW": "assets/img_05.jpg.enc",
         "NZECHLNSQELSPAE": "assets/img_06.jpg.enc",
         "FBHAXUHCDVSGJCQ": "assets/img_07.jpg.enc",
+        "TEAMO3000000": "assets/todos_tus_codigos.PDF",
     };
 
     let currentFileUrl = ''; // Almacena la URL del archivo para la descarga
